@@ -1,0 +1,46 @@
+{
+  "name": "omz13/kirby3-byline",
+  "description": "kirby3 plugin to provide field methods to generate author bylines",
+  "keywords": [
+    "kirby3",
+    "plugin",
+    "whatever"
+  ],
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "David Somers",
+      "email": "dsomers@omz13.com",
+      "homepage": "https://meldingstuff.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "getkirby/cms": "dev-master as 3.0.0"
+  },
+  "require-dev": {
+    "localheinz/composer-normalize": "^0.8.0"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "autoload": {
+    "files": [
+      "config.php"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/k-next/kirby"
+    }
+  ],
+  "minimum-stability": "beta",
+  "scripts": {
+    "build": [
+      "composer dumpautoload -o"
+    ]
+  }
+}
