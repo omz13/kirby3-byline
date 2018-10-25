@@ -45,9 +45,13 @@ function getUriForKirbyUser( User $user ) : string {
   return "";
 }
 
-function generateByline( Field $field, bool $linked ) : string {
+function generateByline( Field $field, bool $linked, bool $byPrefix ) : string {
   $r="";
   $countA=0;
+
+  if ($byPrefix == true) {
+    $r .= t('by');
+  }
 
   if ( $field != null && $field != "" ) {
     $a = $field->toArray()[ 'author' ];
@@ -55,10 +59,10 @@ function generateByline( Field $field, bool $linked ) : string {
       // structured field
       foreach ( $field->yaml() as $k => $author ) {
         if ( $k == count( $field->yaml() ) -1 && $countA > 0 )  {
-          $r .= " and "; // penultimate
+          $r .= t("and"); // penultimate
         } else {
           if ( $countA > 0 ) { // not first
-            $r .= ", ";
+            $r .= t('comma');
           }
         }
         $countA += addBylineToStream( $r, $author, $linked );
@@ -72,7 +76,7 @@ function generateByline( Field $field, bool $linked ) : string {
   if ($countA==0) {
     $o = kirby()->option( 'omz13.byline.author' );
     if ( $o != null ) {
-      return $o;
+      return $r . $o;
     }
   } else {
     return $r;
@@ -86,18 +90,63 @@ Kirby::plugin(
       'options'  => [
         'author' => 'Staff Writer',  // default author name
       ],
+      'translations' => [
+        'en' => [
+          'and' => ' and ',
+          'by' => 'By ',
+          'comma' => ', '
+        ],
+        'de' => [
+          'and' => ' und ',
+          'by' => 'Von ',
+        ],
+        'el' => [
+          'and' => ' και ',
+          'by' => 'Από τον '
+        ],
+        'es' => [
+          'and' => ' y ',
+          'by' => 'Por ',
+        ],
+        'fr' => [
+          'and' => ' en ',
+          'by' => 'Par ',
+        ],
+        'it' => [
+          'and' => ' e ',
+          'by' => 'Di ',
+        ],
+        'nl' => [
+          'and' => ' en ',
+          'by' => 'Door ',
+        ],
+        'sv' => [
+          'and' => ' och ',
+          'by' => 'Av ',
+        ],
+        'zh' => [
+          'and' => '和',
+          'by' => '由',
+          'comma' => '、'
+        ]
+      ],
       'fieldMethods' => [
         'byline' => function ($field) {
-            // modify field to allow for chaining
-            $field->value = generateByline( $field, false );
+            $field->value = generateByline( $field, false, false );
             return $field;
           },
         'bylineLinked' => function ($field) {
-            // modify field to allow for chaining
-            $field->value = generateByline( $field, true );
+            $field->value = generateByline( $field, true, false );
             return $field;
           },
-
+        'bylineBy' => function ($field) {
+            $field->value = generateByline( $field, false, true );
+            return $field;
+          },
+        'bylineByLinked' => function ($field) {
+            $field->value = generateByline( $field, true, true );
+            return $field;
+          },
       ],
     ]
 );
