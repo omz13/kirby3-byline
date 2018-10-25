@@ -1,6 +1,6 @@
 # Kirby3 byline
 
-This is a plugin for kirby3 that provides field methods to make generating an (author) byline.
+This is a plugin for kirby3 that provides field methods to make generating a byline very easy. Multiple authors are turned into a (comma-separated-and) list, author names can link to their website or whatever, and localization is provided.
 
 - It can cope with a field that either contains a single author or a structured (yaml) list of one or more authors.
 - When generating the byline, it adds separators (typically a comma) and a coordinator between the last entries (typically an "and") which are _localized_  for `fr`, `de`, `el`, `es`, `it`, `nl`, `sv` and `zh`.
@@ -37,7 +37,7 @@ If the author's details are missing, it will return `"Staff Writer"` (or whateve
 This field method is intened for use in a blueprint, for example:
 
 ```yaml
-info: "{{ page.author.bylineLinked }} - {{ page.date('Y-m-d') }}"
+info: "{{ page.author.byline }} - {{ page.date('Y-m-d') }}"
 ```
 
 ### bylineLinked
@@ -47,7 +47,7 @@ This field method is similar to the `byline` field method except that each autho
 The `bylineLinked` field method is intended for use in a template or snippet:
 
 ```php
-<?= $page->author()->byline() ?>
+<?= $page->author()->bylineLinked() ?>
 ```
 
 For example, for the Kirby [starterkit](https://github.com/k-next/starterkit), you would change in `snippets/article` the lines:
@@ -61,7 +61,7 @@ For example, for the Kirby [starterkit](https://github.com/k-next/starterkit), y
 to:
 
 ```php
-<p class="article-author">by <?= $article->author()->byline() ?></p>
+<p class="article-author">by <?= $article->author()->bylineLinked() ?></p>
 ```
 
 ### bylineBy
