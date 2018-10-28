@@ -11,8 +11,8 @@ function addBylineToStream( string &$r, string $authorEmail, bool $linked ) : in
   if ( $user != null ) {
     $username = $user->name();
     if ( $username == null ) {
-      $emailParts = explode( "@", $user->email(), 2 );
-      $username   = ucwords( $emailParts[0] );
+      # user found, but has no name, so guess from email
+      $username .= getNameFromEmail($authorEmail);
     }
 
     $uri = getUriForKirbyUser( $user );
@@ -23,7 +23,8 @@ function addBylineToStream( string &$r, string $authorEmail, bool $linked ) : in
     }
   }
   else {
-    $r .= $authorEmail;
+    # user not found - guess from email address (better than just showing their email address)
+    $r .= getNameFromEmail($authorEmail);
   }
   return 1;
 }
@@ -43,6 +44,12 @@ function getUriForKirbyUser( User $user ) : string {
   }
 
   return "";
+}
+
+function getNameFromEmail( string $authorEmail ) : string {
+  $emailParts = explode( "@", $authorEmail, 2 );
+  $username   = ucwords( $emailParts[0] );
+  return $username;
 }
 
 function generateByline( Field $field, bool $linked, bool $byPrefix ) : string {
