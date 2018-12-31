@@ -1,5 +1,16 @@
 # Kirby3 byline
 
+**Requirement:** Kirby 3.0.0-RC3 or better
+
+## Coffee, Beer, etc.
+
+This plugin is free but if you use it in a commercial project to show your support you are welcome to:
+- [make a donation 🍻](https://www.paypal.me/omz13/10) or
+- [buy me ☕☕](https://buymeacoff.ee/omz13) or
+- [buy a Kirby license using this affiliate link](https://a.paddle.com/v2/click/1129/36191?link=1170)
+
+## Purpose
+
 This is a plugin for kirby3 that provides field methods to make generating a byline very easy. Multiple authors are turned into a (comma-separated-and) list, author names can link to their website or whatever, and localization is provided.
 
 - It can cope with a field that either contains a single author or a structured (yaml) list of one or more authors.
@@ -81,9 +92,3 @@ Example:
 ## Disclaimer
 
 This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/omz13/kirby3-feeds/issues/new).
-
-## License
-
-### Buy Me A Coffee
-
-Until kirby3 has been officially released, you are free to use and evaluate this plugin on test or production servers AT YOUR OWN RISK. There is no warranty. Support is at my discretion. Did I mention that I like coffee? To show your support for this project you are welcome to [buy me a coffee](https://buymeacoff.ee/omz13) (or even several coffees as coffee is expensive where I live and I need a cup of three to get me started every day).
