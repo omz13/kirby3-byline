@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=7.1",
-    "getkirby/cms": "^3.0.0-RC-3.0"
+    "getkirby/cms": "^3.0.0-RC-2.0"
   },
   "require-dev": {
     "localheinz/composer-normalize": "^0.8.0"
