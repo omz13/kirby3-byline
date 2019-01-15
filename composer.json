@@ -31,12 +31,6 @@
       "config.php"
     ]
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/k-next/kirby"
-    }
-  ],
   "minimum-stability": "beta",
   "scripts": {
     "build": [

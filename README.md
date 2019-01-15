@@ -1,6 +1,6 @@
 # Kirby3 byline
 
-**Requirement:** Kirby 3.0.0-RC3 or better
+**Requirement:** Kirby 3.0
 
 ## Coffee, Beer, etc.
 
