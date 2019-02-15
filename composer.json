@@ -1,5 +1,6 @@
 {
   "name": "omz13/kirby3-byline",
+  "type": "kirby-plugin",
   "description": "kirby3 plugin to provide field methods to generate author bylines",
   "keywords": [
     "kirby3",
@@ -17,10 +18,17 @@
   ],
   "require": {
     "php": ">=7.1",
-    "getkirby/cms": "^3.0.0-RC-2.0"
+    "getkirby/composer-installer": "^1.1"
   },
   "require-dev": {
-    "localheinz/composer-normalize": "^0.8.0"
+    "getkirby/cms": "^3.0.1",
+    "jakub-onderka/php-parallel-lint": "^1.0",
+    "localheinz/composer-normalize": "^0.8.0",
+    "omz13/omz13-coding-standard": "dev-master",
+    "phpmd/phpmd": "^2.6",
+    "phpstan/phpstan": "^0.10.7",
+    "phpstan/phpstan-strict-rules": "^0.10.1",
+    "squizlabs/php_codesniffer": "^3.4"
   },
   "config": {
     "optimize-autoloader": true,
@@ -28,13 +36,29 @@
   },
   "autoload": {
     "files": [
-      "config.php"
+      "src/config.php"
     ]
   },
   "minimum-stability": "beta",
   "scripts": {
     "build": [
+      "@sanity",
       "composer dumpautoload -o"
-    ]
+    ],
+    "fix": [
+      "./vendor/bin/phpcbf ./src/*",
+      "./vendor/bin/phpcs -s ./src/*"
+    ],
+    "lint": "./vendor/bin/parallel-lint ./src/*",
+    "mess": "./vendor/bin/phpmd ./src text codesize,controversial,design,unusedcode",
+    "sanity": [
+      "make tools",
+      "@lint",
+      "./vendor/bin/phpcs -n ./src/*",
+      "@stan",
+      "@mess"
+    ],
+    "stan": "./vendor/bin/phpstan analyse --level 7 ./src",
+    "style": "./vendor/bin/phpcs ./src/*"
   }
 }
