@@ -45,7 +45,7 @@ For a single author, it will return the author's name.
 
 If the author's details are missing, it will return `"Staff Writer"` (or whatever has been specified by the configuration option `author`).
 
-This field method is intened for use in a _blueprint_, for example:
+This field method is intended for use in a _blueprint_, for example:
 
 ```yaml
 info: "{{ page.author.byline }} - {{ page.date('Y-m-d') }}"
